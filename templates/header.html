@@ -5,8 +5,11 @@
 		</a>
 	</div>
 	<div class="col-md-6 text-right">
-					<p>Login Link will go Here </p>
-                    <a href = "{{url_for('gdisconnect') }}">Logout</a>
+                    {%if 'username' not in session %}
+				<a href = "{{url_for('showLogin')}}">Click Here to Log In.</a>
+                {% else %}
+                <a href = "{{url_for('disconnect') }}">Logout</a>
+                {% endif %}
 
 	</div>
 </div>
