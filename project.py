@@ -45,20 +45,19 @@ def fbconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
     access_token = request.data
-    print "access token received as %s" % access_token
     
     #Exchange client token for long-lived server-side token with 
     #GET /oauth/access_token?grant_type=fb_exchange_token&client_id={app-id}
     #&client_secret={app-secret}%fb_exchange_token={short-lived-token}
-    print 'test'
-    app_id = json.loads(open('fb_client_secrets.json', 'r').read())['web']['app_id']                     
-    app_secret = json.loads(open('fb_client_secrets.json', 'r').read())['web']['app_secret']
+    app_id = json.loads(open('fb_client_secrets.json', 'r')
+        .read())['web']['app_id']                    
+    app_secret = json.loads(open('fb_client_secrets.json', 'r')
+        .read())['web']['app_secret']
     url = ('https://graph.facebook.com/v2.9/oauth/access_token?'
            'grant_type=fb_exchange_token&client_id=%s&client_secret=%s'
            '&fb_exchange_token=%s') % (app_id, app_secret, access_token)
     h = httplib2.Http()
     result = h.request(url, 'GET')[1]
-    print 'hello'
     
     #Use token to get user info from API    #long-term tokens can last up to two months
     userinfo_url = "https://graph.facebook.com/v2.2/me"
@@ -108,12 +107,12 @@ def fbdisconnect():
     h = httplib2.Http()
     result = h.request(url, 'DELETE')[1]
 
-    del login_session['username']
-    del login_session['email']
-    del login_session['picture']
-    del login_session['user_id']
-    del login_session['facebook_id']
-    return "You have successfully logged out of Facebook."
+#    del login_session['username']
+#    del login_session['email']
+#    del login_session['picture']
+#    del login_session['user_id']
+#    del login_session['facebook_id']
+#    return "You have successfully logged out of Facebook."
     
 #######    
 

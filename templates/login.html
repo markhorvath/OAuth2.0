@@ -47,6 +47,7 @@
       // Facebook SDK can also make api calls (as shown below)
       FB.api('/me', function(response) {
         console.log('Successful login for: ' + response.name);
+        console.log('{{STATE}}');
         // send the access_token and state value (which is part of the response) to the server via AJAX
         $.ajax({
           type: 'POST',
